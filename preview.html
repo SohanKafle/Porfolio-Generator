@@ -3,24 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio Preview</title>
+<title>Generated Portfolio</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <p>Hello 👋 I'm</p>
-            <h1 id="previewName"></h1>
-            <h2>And I'm a <span id="previewRole">Web Developer</span></h2>
-            <div class="cta-buttons">
-                <button class="cta-btn">I need a website</button>
-                <button class="cta-btn">I'm looking to hire</button>
-            </div>
-        </div>
-    </section>
-
+    <div id="portfolioContainer" class="portfolio-display"></div>
+    <button id="downloadButton" class="download-btn">Download Portfolio as ZIP</button>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

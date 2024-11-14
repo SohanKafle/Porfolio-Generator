@@ -1,32 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Your Portfolio</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="form-container">
-        <h2>Fill Your Details</h2>
+        <div class="header">
+            <p>Fill in your details to generate your portfolio page instantly.</p>
+        </div>
+        
         <form id="portfolioForm">
-            <label for="name">Full Name:</label>
-            <input type="text" id="name" required><br>
+            <div class="form-row">
+                <!-- Left Column -->
+                <div class="input-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Your Name" required>
+                </div>
 
-            <label for="about">About Me:</label>
-            <textarea id="about" required></textarea><br>
+                <div class="input-group">
+                    <label for="role">Role:</label>
+                    <input type="text" id="role" placeholder="e.g., Frontend Developer" required>
+                </div>
+            </div>
 
-            <label for="skills">Skills (comma-separated):</label>
-            <input type="text" id="skills" required><br>
+            <div class="form-row">
+                <!-- Right Column -->
+                <div class="input-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" placeholder="Brief description about yourself" required></textarea>
+                </div>
 
-            <label for="projects">Project Links (comma-separated):</label>
-            <input type="text" id="projects"><br>
+                <div class="input-group">
+                    <label for="linkedin">LinkedIn URL:</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                </div>
+            </div>
 
-            <button type="button" onclick="generatePortfolio()">Generate Portfolio</button>
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="github">GitHub URL:</label>
+                    <input type="url" id="github" placeholder="https://github.com/yourprofile">
+                </div>
+
+                <div class="input-group">
+                    <label for="instagram">Instagram URL:</label>
+                    <input type="url" id="instagram" placeholder="https://instagram.com/yourprofile">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="input-group">
+                    <label for="twitter">Twitter URL:</label>
+                    <input type="url" id="twitter" placeholder="https://twitter.com/yourprofile">
+                </div>
+            </div>
+
+            <!-- Button to generate portfolio -->
+            <button type="button" class="generate-btn" onclick="generatePortfolio()">Generate Portfolio</button>
         </form>
-        <button onclick="window.location.href='index.html'">Back to Home</button>
     </div>
 
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
