@@ -1,0 +1,83 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    background-color: #000;
+    overflow: hidden;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://source.unsplash.com/1600x900/?laptop,workspace') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content {
+    max-width: 600px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); /* Subtle background overlay */
+    border-radius: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    font-weight: 300;
+}
+
+.hero-content h1 {
+    font-size: 4em;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.hero-content h2 {
+    font-size: 1.8em;
+    color: #ff3366;
+    font-weight: 400;
+}
+
+.cta-buttons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cta-btn {
+    padding: 15px 25px;
+    background: #ff3366;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(255, 51, 102, 0.5);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.cta-btn:hover {
+    background: #ff6699;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+
+    .hero-content h2 {
+        font-size: 1.3em;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
