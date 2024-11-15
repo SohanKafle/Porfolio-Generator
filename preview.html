@@ -1,16 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Generated Portfolio</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Preview</title>
+    <link rel="shortcut icon" href="image/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="preview-style.css">
+    <style>
+        body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.preview-container {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+
+.preview-header {
+    margin-bottom: 20px;
+}
+
+.preview-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2a44;
+}
+
+.preview-header p {
+    font-size: 1.5rem;
+    color: #4a4a4a;
+}
+
+.profile {
+    margin-bottom: 30px;
+}
+
+#previewImage {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.social-links p {
+    font-size: 1.2rem;
+}
+
+.social-links a {
+    color: #4C87B9;
+    text-decoration: none;
+}
+
+.social-links a:hover {
+    color: #FF6A00;
+}
+
+    </style>
 </head>
 <body>
-    <div id="portfolioContainer" class="portfolio-display"></div>
-    <button id="downloadButton" class="download-btn">Download Portfolio as ZIP</button>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <div class="preview-container">
+        <header class="preview-header">
+            <h1 id="previewName"></h1>
+            <p id="previewRole"></p>
+        </header>
+
+        <div class="profile">
+            <img id="previewImage" src="#" alt="Profile Image" style="display:none;">
+            <p id="previewDescription"></p>
+        </div>
+
+        <div class="social-links">
+            <p><a href="#" id="previewGithub" target="_blank">GitHub</a></p>
+            <p><a href="#" id="previewInstagram" target="_blank">Instagram</a></p>
+            <p><a href="#" id="previewLinkedin" target="_blank">LinkedIn</a></p>
+            <p><a href="#" id="previewTwitter" target="_blank">Twitter</a></p>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -46,6 +46,7 @@ body {
     margin-bottom: 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    font-family: 'Lora', sans-serif; /* Modern sans-serif font */
 }
 
 .header p {

@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Your Portfolio</title>
+    <title>Portfolio Form</title>
+    <link rel="shortcut icon" href="image/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="form-container">
@@ -12,7 +14,7 @@
             <p>Fill in your details to generate your portfolio page instantly.</p>
         </div>
         
-        <form id="portfolioForm">
+        <form id="portfolioForm" onsubmit="return validateForm()">
             <div class="form-row">
                 <!-- Left Column -->
                 <div class="input-group">
@@ -34,32 +36,38 @@
                 </div>
 
                 <div class="input-group">
-                    <label for="linkedin">LinkedIn URL:</label>
-                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    <label for="image">Profile Image:</label>
+                    <input type="file" id="image" accept="image/*" onchange="previewImage(event)" required>
+                    <img id="imagePreview" src="#" alt="Image preview" style="display:none; width: 100px; height: 100px; margin-top: 10px;">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="input-group">
                     <label for="github">GitHub URL:</label>
-                    <input type="url" id="github" placeholder="https://github.com/yourprofile">
+                    <input type="url" id="github" placeholder="https://github.com/yourprofile" pattern="https?://.*" title="Please enter a valid URL">
                 </div>
 
                 <div class="input-group">
                     <label for="instagram">Instagram URL:</label>
-                    <input type="url" id="instagram" placeholder="https://instagram.com/yourprofile">
+                    <input type="url" id="instagram" placeholder="https://instagram.com/yourprofile" pattern="https?://.*" title="Please enter a valid URL">
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="input-group">
+                    <label for="linkedin">LinkedIn URL:</label>
+                    <input type="url" id="linkedin" placeholder="https://linkedin.com/in/yourprofile" pattern="https?://.*" title="Please enter a valid URL">
+                </div>
+
+                <div class="input-group">
                     <label for="twitter">Twitter URL:</label>
-                    <input type="url" id="twitter" placeholder="https://twitter.com/yourprofile">
+                    <input type="url" id="twitter" placeholder="https://twitter.com/yourprofile" pattern="https?://.*" title="Please enter a valid URL">
                 </div>
             </div>
 
             <!-- Button to generate portfolio -->
-            <button type="button" class="generate-btn" onclick="generatePortfolio()">Generate Portfolio</button>
+            <button type="submit" class="generate-btn">Generate Portfolio</button>
         </form>
     </div>
 

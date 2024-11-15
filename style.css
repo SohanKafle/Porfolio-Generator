@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: #E5F3FF; /* Soft off-white background */
     color: #333;
     line-height: 1.6;
@@ -31,13 +31,6 @@ body {
 .header {
     text-align: center;
     margin-bottom: 30px;
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1F2A44; /* Darker text for header */
-    margin-bottom: 10px;
 }
 
 .header p {
@@ -91,31 +84,11 @@ input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
     box-shadow: 0 0 5px rgba(76, 135, 185, 0.5);
 }
 
-/* Social Icons visibility and hover */
-.social-icon {
-    font-size: 1.3rem;
-    margin-top: 10px;
-    visibility: hidden;
-    color: #333;
-}
-
-input[type="url"]:focus + .social-icon {
-    visibility: visible;
-}
-
-.social-icon a {
-    color: inherit;
-    transition: color 0.3s;
-}
-
-.social-icon a:hover {
-    color: #4C87B9; /* Blue hover effect for icons */
-}
-
 /* Button Styling */
 .generate-btn {
     background-color: #FF6A00; /* Bright orange for call-to-action */
     color: white;
+    font-weight: 600;
     padding: 15px 30px;
     font-size: 1.2rem;
     border: none;
@@ -136,6 +109,7 @@ input[type="url"]:focus + .social-icon {
 .generate-btn:active {
     background-color: #E55A00; /* Darker orange when clicked */
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

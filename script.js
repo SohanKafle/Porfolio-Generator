@@ -1,73 +1,130 @@
-// Generate Portfolio Files and Zip them
+window.onload = function() {
+    // Get data from localStorage
+    const name = localStorage.getItem('name');
+    const role = localStorage.getItem('role');
+    const description = localStorage.getItem('description');
+    const github = localStorage.getItem('github');
+    const instagram = localStorage.getItem('instagram');
+    const linkedin = localStorage.getItem('linkedin');
+    const twitter = localStorage.getItem('twitter');
+    const image = localStorage.getItem('image');
+
+    // Set data into preview page
+    document.getElementById('previewName').innerText = name;
+    document.getElementById('previewRole').innerText = role;
+    document.getElementById('previewDescription').innerText = description;
+
+    if (image) {
+        const imgElement = document.getElementById('previewImage');
+        imgElement.src = image;
+        imgElement.style.display = 'block';
+    }
+
+    document.getElementById('previewGithub').href = github;
+    document.getElementById('previewInstagram').href = instagram;
+    document.getElementById('previewLinkedin').href = linkedin;
+    document.getElementById('previewTwitter').href = twitter;
+}
+
 function generatePortfolio() {
-    // Collecting form data
+    // Get form values
     const name = document.getElementById('name').value;
     const role = document.getElementById('role').value;
     const description = document.getElementById('description').value;
-    const linkedin = document.getElementById('linkedin').value;
     const github = document.getElementById('github').value;
+    const instagram = document.getElementById('instagram').value;
+    const linkedin = document.getElementById('linkedin').value;
+    const twitter = document.getElementById('twitter').value;
+    const image = document.getElementById('image').files[0];
 
-    // Generating HTML content
-    const portfolioHTML = `
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>${name}'s Portfolio</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="portfolio-display">
-            <h1>${name}</h1>
-            <h2>${role}</h2>
-            <p>${description}</p>
-            <a href="${linkedin}" target="_blank">LinkedIn</a> | 
-            <a href="${github}" target="_blank">GitHub</a>
-        </div>
-    </body>
-    </html>`;
+    // Save data to localStorage
+    localStorage.setItem('name', name);
+    localStorage.setItem('role', role);
+    localStorage.setItem('description', description);
+    localStorage.setItem('github', github);
+    localStorage.setItem('instagram', instagram);
+    localStorage.setItem('linkedin', linkedin);
+    localStorage.setItem('twitter', twitter);
 
-    // Generating CSS content
-    const portfolioCSS = `
-    /* Basic Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Arial', sans-serif;
+    // Handle image preview
+    if (image) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            localStorage.setItem('image', e.target.result);
+        }
+        reader.readAsDataURL(image);
     }
 
-    /* Portfolio Page */
-    .portfolio-display {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 20px;
-        background: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    // Redirect to preview page
+    window.location.href = 'preview.html';
+}
+
+// Function to validate the form
+function validateForm() {
+    // Get form values
+    const name = document.getElementById('name').value;
+    const role = document.getElementById('role').value;
+    const description = document.getElementById('description').value;
+    const github = document.getElementById('github').value;
+    const instagram = document.getElementById('instagram').value;
+    const linkedin = document.getElementById('linkedin').value;
+    const twitter = document.getElementById('twitter').value;
+    const image = document.getElementById('image').files[0];
+
+    // Validate name, role, and description
+    if (!name || !role || !description) {
+        alert("Please fill out all required fields.");
+        return false; // Prevent form submission
     }
 
-    h1, h2 {
-        color: #333;
+    // Validate image
+    if (!image) {
+        alert("Please upload a profile image.");
+        return false; // Prevent form submission
     }
 
-    a {
-        color: #007bff;
-        text-decoration: none;
+    // Check if the uploaded file is an image
+    const fileType = image.type.split("/")[0];
+    if (fileType !== "image") {
+        alert("Please upload a valid image file.");
+        return false; // Prevent form submission
     }
 
-    a:hover {
-        text-decoration: underline;
-    }`;
+    // Validate URLs (check if the URLs are in a correct format)
+    const urlPattern = /^https?:\/\/[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+/;
+    if (github && !urlPattern.test(github)) {
+        alert("Please enter a valid GitHub URL.");
+        return false;
+    }
+    if (instagram && !urlPattern.test(instagram)) {
+        alert("Please enter a valid Instagram URL.");
+        return false;
+    }
+    if (linkedin && !urlPattern.test(linkedin)) {
+        alert("Please enter a valid LinkedIn URL.");
+        return false;
+    }
+    if (twitter && !urlPattern.test(twitter)) {
+        alert("Please enter a valid Twitter URL.");
+        return false;
+    }
 
-    // Creating a ZIP file
-    const zip = new JSZip();
-    zip.file("index.html", portfolioHTML);
-    zip.file("style.css", portfolioCSS);
+    // If everything is valid, allow the form to be submitted
+    return true;
+}
 
-    // Generating the ZIP and allowing the user to download it
-    zip.generateAsync({type: "blob"}).then(function(content) {
-        saveAs(content, "portfolio.zip");
-    });
+// Function to preview image
+function previewImage(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    
+    reader.onload = function(e) {
+        const preview = document.getElementById('imagePreview');
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+    };
+    
+    if (file) {
+        reader.readAsDataURL(file);
+    }
 }
