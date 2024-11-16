@@ -11,9 +11,9 @@ body {
     color: #333;
     line-height: 1.8;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    flex-direction: column; /* Ensure elements stack vertically */
+    justify-content: space-between; /* Push header and footer apart */
+    min-height: 100vh; /* Ensure the page is at least the height of the screen */
     padding: 0 20px;
 }
 
@@ -31,9 +31,12 @@ body {
 
 /* Header Styling */
 .header {
+    margin-top: 10px;
     color: #ffffff;
-    padding: 40px 20px;
+    padding: 30px 20px;
     border-radius: 20px;
+    margin-left: 25%;
+    max-width: 600px;
     background: linear-gradient(135deg, #6D73FF, #98A4FF); /* Soft gradient background */
     margin-bottom: 30px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
@@ -84,6 +87,30 @@ body {
 /* Hover Effect for Container */
 .container:hover {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); /* Slight hover effect */
+}
+
+/* Footer Styling */
+.footer {
+    color: #333;
+    text-align: center;
+
+    width: 100%;
+    margin-top: auto; /* Push footer to the bottom */
+    background: none; /* No background */
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.footer p a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.footer p a:hover {
+    text-decoration: underline;
 }
 
 /* Responsive Design */

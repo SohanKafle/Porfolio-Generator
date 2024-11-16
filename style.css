@@ -10,15 +10,19 @@ body {
     background-color: #E5F3FF; /* Soft off-white background */
     color: #333;
     line-height: 1.6;
-    height: 100vh;
+    min-height: 100vh; /* Change from height to min-height to allow for more content */
     display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Align content from the top instead of center */
-    padding-top: 10px; /* Add some space at the top */
+    justify-content: flex-start; /* Align content from the top */
+    align-items: flex-start; /* Align from the top */
+    padding-top: 20px; /* Add some space at the top */
+    padding-bottom: 10px; /* Add space at the bottom for better visual balance */
+    flex-direction: column; /* Ensure content is stacked vertically */
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 .form-container {
     background-color: #ffffff;
+    margin-left: 15%;
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     padding: 40px;
@@ -110,6 +114,29 @@ input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
     background-color: #E55A00; /* Darker orange when clicked */
 }
 
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 20px;
+    width: 100%; /* Ensure footer spans the full width of the page */
+    position: relative;
+    bottom: 0;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.footer p a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+.footer p a:hover {
+    text-decoration: underline;
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -124,5 +151,9 @@ input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
     .generate-btn {
         padding: 12px 25px;
         font-size: 1rem;
+    }
+
+    .footer {
+        padding: 15px;
     }
 }
