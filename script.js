@@ -3,10 +3,6 @@ function validateForm() {
     const name = document.getElementById('name').value;
     const role = document.getElementById('role').value;
     const description = document.getElementById('description').value;
-    const github = document.getElementById('github').value;
-    const instagram = document.getElementById('instagram').value;
-    const linkedin = document.getElementById('linkedin').value;
-    const twitter = document.getElementById('twitter').value;
     const image = document.getElementById('image').files[0];
 
     if (!name || !role || !description) {
@@ -26,6 +22,11 @@ function validateForm() {
     }
 
     const urlPattern = /^https?:\/\/[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+/;
+    const github = document.getElementById('github').value;
+    const instagram = document.getElementById('instagram').value;
+    const linkedin = document.getElementById('linkedin').value;
+    const twitter = document.getElementById('twitter').value;
+
     if (github && !urlPattern.test(github)) {
         alert("Please enter a valid GitHub URL.");
         return false;
@@ -50,7 +51,7 @@ function validateForm() {
 function previewImage(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const preview = document.getElementById('imagePreview');
         preview.src = e.target.result;
         preview.style.display = 'block';
@@ -60,7 +61,7 @@ function previewImage(event) {
     }
 }
 
-// Function to generate portfolio in a new window
+// Function to generate portfolio preview in a new tab
 function generatePortfolio(event) {
     event.preventDefault(); // Prevent the form from submitting and refreshing the page
 
@@ -76,89 +77,128 @@ function generatePortfolio(event) {
     const image = document.getElementById('image').files[0];
 
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const imageDataURL = e.target.result;
-        
-        const newWindow = window.open("", "_blank", "width=800,height=600");
-        newWindow.document.write(`
+
+        // Open a new tab for the portfolio preview
+        const newTab = window.open("", "_blank");
+
+        newTab.document.write(`
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title>Portfolio Preview</title>
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
                 <style>
                     body {
-                        font-family: 'Poppins', sans-serif;
                         margin: 0;
-                        padding: 0;
-                        background: #f4f7fc;
-                        color: #333;
-                        text-align: center;
+                        font-family: 'Poppins', sans-serif;
+                        background-color: #f9f9f9;
                     }
-                    .container {
-                        width: 80%;
-                        margin: auto;
-                        max-width: 1200px;
+                    .FirstElement {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-around;
+                        align-items: center;
+                        padding-top: 5rem;
+                        overflow: hidden;
                     }
-                    header {
-                        margin-top: 30px;
-                    }
-                    .profile-image {
-                        width: 150px;
-                        height: 150px;
+                    .profile-photo {
+                        width: 300px;
+                        height: 300px;
                         border-radius: 50%;
+                        overflow: hidden;
+                        border: 15px solid #444444;
+                        box-shadow: 5px 7px 25px rgba(0, 0, 0, 0.5);
                         margin-bottom: 20px;
                     }
-                    h2 {
-                        font-size: 36px;
-                        color: #2c3e50;
+                    .profile-photo img {
+                        width: 100%;
+                        height: 100%;
+                        transition: 0.5s;
                     }
-                    .role {
-                        font-size: 20px;
-                        color: #7f8c8d;
+                    .profile-photo img:hover {
+                        transform: scale(1.2);
                     }
-                    .description {
-                        font-size: 18px;
-                        color: #34495e;
+                    .profile-text {
+                        max-width: 750px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        padding-bottom: 40px;
+                    }
+                    .profile-text h5 {
+                        color: #e5e5e5;
+                        font-size: 14px;
+                    }
+                   .profile-text h1 {
+                        color: #fed700;
+                        font-size: 2rem; /* Make the text smaller */
+                        margin: 10px 0; /* Adjust the margin to reduce space */
+                        padding: 0; /* Remove any padding to reduce space */
+                    }
+                    .profile-text p {
+                        color: #e5e5e5;
+                        text-align: justify;
+                    }
+                    .profile-text .social {
                         margin-top: 20px;
-                        line-height: 1.6;
                     }
-                    .social-links {
+                    .profile-text .social a {
+                        color: #e5e5e5;
+                        font-size: 18px;
+                        margin-right: 10px;
+                        transition: 0.5s;
+                    }
+                    .profile-text .social a:hover {
+                        color: #fed700;
+                        transform: rotate(360deg);
+                    }
+                    .btn-group {
                         margin-top: 30px;
                     }
-                    .social-links a {
-                        font-size: 20px;
-                        color: #2980b9;
-                        margin: 0 15px;
-                        text-decoration: none;
+                    .btn {
+                        padding: 12px 30px;
+                        background-color: #2980b9;
+                        color: white;
+                        font-size: 18px;
+                        border: none;
+                        border-radius: 50px;
+                        cursor: pointer;
+                        text-transform: uppercase;
+                        transition: all 0.3s;
                     }
-                    .social-links a:hover {
-                        color: #3498db;
-                    }
-                    footer {
-                        margin-top: 40px;
-                        font-size: 14px;
-                        color: #95a5a6;
+                    .btn:hover {
+                        background-color: #3498db;
+                        transform: scale(1.1);
                     }
                 </style>
             </head>
             <body>
-                <div class="container">
-                    <header>
-                        <img src="${imageDataURL}" alt="Profile Image" class="profile-image">
-                        <h2>${name}</h2>
-                        <p class="role">${role}</p>
-                        <p class="description">${description}</p>
-                    </header>
-                    <div class="social-links">
-                        ${github ? `<a href="${github}" target="_blank"><i class="fab fa-github"></i> GitHub</a>` : ''}
-                        ${instagram ? `<a href="${instagram}" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>` : ''}
-                        ${linkedin ? `<a href="${linkedin}" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>` : ''}
-                        ${twitter ? `<a href="${twitter}" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>` : ''}
+                <div class="FirstElement" id="home">
+                    <div class="profile-photo">
+                        <img src="${imageDataURL}" alt="Profile Picture">
                     </div>
-                    <footer>
-                        <p>&copy; ${new Date().getFullYear()} ${name}. All rights reserved.</p>
-                    </footer>
+                    <div class="profile-text">
+                        <h5>Hi I'm ${name} </h5><br>
+                        <h1>${role}</h1><br>
+                        <p>${description}</p>
+
+                        <div class="btn-group">
+                            <a href="cv/SOHAN KAFLE.pdf" class="btn active">Download CV</a>
+                            <a href="mailto:kaflesohan1@gmail.com" class="btn">Contact</a>
+                        </div>
+
+                        <div class="social">
+                            ${github ? `<a href="${github}" target="_blank"><i class="fab fa-github"></i></a>` : ''}
+                            ${instagram ? `<a href="${instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
+                            ${twitter ? `<a href="${twitter}" target="_blank"><i class="fab fa-twitter"></i></a>` : ''}
+                            ${linkedin ? `<a href="${linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a>` : ''}
+                        </div>
+                    </div>
                 </div>
             </body>
             </html>
@@ -169,5 +209,6 @@ function generatePortfolio(event) {
     }
 }
 
-// Add event listener to form submit
+// Attach event listener to the form
 document.getElementById('portfolioForm').addEventListener('submit', generatePortfolio);
+document.getElementById('image').addEventListener('change', previewImage);
