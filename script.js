@@ -305,3 +305,4 @@ document.getElementById('portfolioForm').addEventListener('submit', generatePort
 
 // Event listener for the image preview
 document.getElementById('image').addEventListener('change', previewImage);
+
