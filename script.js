@@ -68,6 +68,7 @@ function generatePortfolio(event) {
     if (!validateForm()) return;
 
     const name = document.getElementById('name').value;
+    const firstName = name.split(' ')[0]; 
     const role = document.getElementById('role').value;
     const description = document.getElementById('description').value;
     const github = document.getElementById('github').value;
@@ -88,7 +89,8 @@ function generatePortfolio(event) {
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-                <title>${name}'s Portfolio</title>
+                <title>${firstName}'s Portfolio</title>
+                <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
                 <style>
@@ -100,9 +102,17 @@ function generatePortfolio(event) {
                         padding: 0;
                         display: flex;
                         flex-direction: column;
-                        min-height: 100vh; /* Ensure the page takes full height */
+                        min-height: 100vh; 
                     }
-
+                   .logo {
+                        font-family: 'Dancing Script', cursive; 
+                        font-size: 2.5rem; 
+                        color: #fed700;
+                        font-weight: 900; 
+                        letter-spacing: 1px;
+                        margin-left: 20px;
+                    }
+                    /* Main content styling */
                     .main-content {
                         flex: 1;
                         display: flex;
@@ -151,6 +161,7 @@ function generatePortfolio(event) {
 
                     .profile-text h5 span {
                         color: #3498db;
+                       font-size: 1.2rem;
                     }
 
                     .profile-text h1 {
@@ -162,15 +173,16 @@ function generatePortfolio(event) {
                         color: #000000;
                         text-align: justify;
                     }
-
+                /* Social section styling */
                     .social {
                         margin-top: 20px;
+                        text-align: center; /* Center the icons */
                     }
 
                     .social a {
                         color: #000000;
                         font-size: 18px;
-                        margin-right: 15px;
+                        margin: 0 15px; /* Adjust spacing between icons */
                         transition: 0.5s;
                     }
 
@@ -178,9 +190,12 @@ function generatePortfolio(event) {
                         color: #fed700;
                         transform: scale(1.2);
                     }
-
+                /* Buttons section styling */
                     .btn-group {
                         margin-top: 30px;
+                        display: flex;
+                        justify-content: center;
+                        gap: 20px; /* Add spacing between buttons */
                     }
 
                     .btn-group a {
@@ -265,6 +280,9 @@ function generatePortfolio(event) {
                     .dark-mode .profile-text p {
                         color: white;
                     }
+                    .dark-mode .logo {
+                        color: #fed700;
+                    }
 
                     .dark-mode .social a {
                         color: white;
@@ -289,35 +307,36 @@ function generatePortfolio(event) {
 
                     /* Responsive styles for mobile */
                     @media (max-width: 768px) {
-                        body {
-                            padding: 0 10px;
-                        }
-
-                        .FirstElement {
-                            flex-direction: column;
-                            text-align: center;
-                            margin-bottom: 0;
-                        }
-
-                        .profile-photo {
-                            width: 200px;
-                            height: 200px;
-                            margin: 0 auto;
-                        }
-
-                        .profile-text {
-                            max-width: 100%;
-                        }
-
-                        footer {
-                            margin-top: 50px;
-                        }
-
+                    body {
+                        padding: 0 15px;
                     }
+
+                    .FirstElement {
+                        flex-direction: column;
+                        text-align: center;
+                        margin-bottom: 0;
+                    }
+
+                    .profile-photo {
+                        width: 200px;
+                        height: 200px;
+                        margin: 0 auto;
+                    }
+
+                    .profile-text {
+                        max-width: 100%;
+                        padding: 0 10px; 
+                    }
+
+                    footer {
+                        margin-top: 50px;
+                        padding: 0 15px; 
+                    }
+                }
                 </style>
             </head>
             <body>
-            
+                <div class="logo">${firstName}.</div>
                 <div class="theme-toggle">
                     <input type="checkbox" id="toggle-dark-mode" />
                     <label for="toggle-dark-mode">
@@ -331,7 +350,7 @@ function generatePortfolio(event) {
                         <img src="${imageDataURL}" alt="Profile Picture">
                     </div>
                     <div class="profile-text">
-                        <h5>Hi I'm <span>${name}</span></h5>
+                        <h5>Hi I'm <span>${name}.</span></h5>
                         <h1>${role}</h1>
                         <p>${description}</p>
                         <div class="btn-group">
@@ -349,6 +368,7 @@ function generatePortfolio(event) {
                 <footer>
                     <p>&copy;2024 ${name}. All rights reserved. <br>Thanks for visiting ❤️</p>
                 </footer>
+                
                 <script>
                     document.getElementById('toggle-dark-mode').addEventListener('change', function () {
                         document.body.classList.toggle('dark-mode');
@@ -369,7 +389,13 @@ function generatePortfolio(event) {
                     });
                 </script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-            </body>
+                      
+                <!-- 
+                             Feel free to update the code as per your need. 
+                             ❤️ From Sohan Kafle. Happy Coding.
+                 -->  
+                
+                </body>
             </html>
         `);
     };
