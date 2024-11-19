@@ -87,8 +87,8 @@ function generatePortfolio(event) {
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Portfolio Preview</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+                <title>${name}'s Portfolio</title>
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
                 <style>
@@ -97,14 +97,28 @@ function generatePortfolio(event) {
                         font-family: 'Poppins', sans-serif;
                         background-color: #f9f9f9;
                         transition: background-color 0.3s, color 0.3s;
+                        padding: 0;
+                        display: flex;
+                        flex-direction: column;
+                        min-height: 100vh; /* Ensure the page takes full height */
                     }
+
+                    .main-content {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    /* Profile section styling */
                     .FirstElement {
                         display: flex;
                         flex-wrap: wrap;
-                        justify-content: space-around;
+                        justify-content: center;
                         align-items: center;
                         padding-top: 5rem;
+                        margin-bottom: 10px; 
                     }
+
                     .profile-photo {
                         width: 300px;
                         height: 300px;
@@ -112,54 +126,69 @@ function generatePortfolio(event) {
                         overflow: hidden;
                         border: 15px solid #444444;
                         box-shadow: 5px 7px 25px rgba(0, 0, 0, 0.5);
-                        margin-right: 30px;
+                        margin-right: 40px;
                         margin-top: 20px;
                     }
+
                     .profile-photo img {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
                         transition: 0.5s;
                     }
+
                     .profile-text {
                         max-width: 600px;
                         text-align: left;
                         margin-top: 20px;
+                        margin-left: 30px;
                     }
+
                     .profile-text h5 {
                         color: #000000;
                         font-size: 14px;
                     }
+
                     .profile-text h5 span {
                         color: #3498db;
                     }
+
                     .profile-text h1 {
                         color: #fed700;
                         font-size: 2rem;
                     }
+
                     .profile-text p {
                         color: #000000;
                         text-align: justify;
                     }
+
                     .social {
                         margin-top: 20px;
                     }
+
                     .social a {
                         color: #000000;
                         font-size: 18px;
                         margin-right: 15px;
                         transition: 0.5s;
                     }
+
                     .social a:hover {
                         color: #fed700;
                         transform: scale(1.2);
                     }
+
                     .btn-group {
                         margin-top: 30px;
                     }
+
                     .btn-group a {
                         text-decoration: none;
+                        align-items: center;
+                        space-between: 10px;
                     }
+
                     .btn {
                         padding: 10px 20px;
                         background-color: #2980b9;
@@ -169,34 +198,39 @@ function generatePortfolio(event) {
                         cursor: pointer;
                         text-transform: uppercase;
                         transition: all 0.3s;
+                        margin-bottom: 10px;
                     }
+
                     .btn:hover {
                         background-color: #3498db;
                         transform: scale(1.1);
                     }
-                      /* Footer Styles */
+
+                    /* Footer Styling */
                     footer {
                         color: black;
                         text-align: center;
                         padding: 20px;
-                        position: fixed;
-                        width: 100%;
-                        bottom: 0;
+                        margin-top: 50px; /* Space above footer */
                     }
+
                     /* Dark Mode Styles */
                     body.dark-mode {
                         background-color: #121212;
                         color: white;
                     }
+
                     .theme-toggle {
-                        position: fixed;
+                        position: absolute;
                         top: 20px;
                         right: 20px;
                         z-index: 1000;
                     }
+
                     .theme-toggle input[type="checkbox"] {
                         display: none;
                     }
+
                     .theme-toggle label {
                         width: 50px;
                         height: 25px;
@@ -209,6 +243,7 @@ function generatePortfolio(event) {
                         padding: 5px;
                         transition: background-color 0.3s;
                     }
+
                     .theme-toggle label::before {
                         content: "";
                         width: 18px;
@@ -217,36 +252,72 @@ function generatePortfolio(event) {
                         border-radius: 50%;
                         transition: transform 0.3s;
                     }
+
                     .theme-toggle input[type="checkbox"]:checked + label {
                         background-color: #3498db;
                     }
+
                     .theme-toggle input[type="checkbox"]:checked + label::before {
                         transform: translateX(25px);
                     }
-                    /* Text Colors for Dark Mode */
+
                     .dark-mode .profile-text h5,  
                     .dark-mode .profile-text p {
                         color: white;
                     }
+
                     .dark-mode .social a {
                         color: white;
                     }
+
                     .dark-mode .social a:hover {
                         color: #fed700;
                         transform: scale(1.2);
                     }
+
                     .dark-mode .btn {
                         background-color: #3498db;
                     }
+
                     .dark-mode .btn:hover {
                         background-color: #2980b9;
                     }
+
                     .dark-mode footer {
-                        color: white;       
+                        color: white;
+                    }
+
+                    /* Responsive styles for mobile */
+                    @media (max-width: 768px) {
+                        body {
+                            padding: 0 10px;
+                        }
+
+                        .FirstElement {
+                            flex-direction: column;
+                            text-align: center;
+                            margin-bottom: 0;
+                        }
+
+                        .profile-photo {
+                            width: 200px;
+                            height: 200px;
+                            margin: 0 auto;
+                        }
+
+                        .profile-text {
+                            max-width: 100%;
+                        }
+
+                        footer {
+                            margin-top: 50px;
+                        }
+
                     }
                 </style>
             </head>
             <body>
+            
                 <div class="theme-toggle">
                     <input type="checkbox" id="toggle-dark-mode" />
                     <label for="toggle-dark-mode">
@@ -254,6 +325,7 @@ function generatePortfolio(event) {
                         <span id="moon-icon" style="opacity: 0;">🌙</span>
                     </label>
                 </div>
+            
                 <div class="FirstElement">
                     <div class="profile-photo">
                         <img src="${imageDataURL}" alt="Profile Picture">
@@ -263,9 +335,9 @@ function generatePortfolio(event) {
                         <h1>${role}</h1>
                         <p>${description}</p>
                         <div class="btn-group">
-                            <a href="" class="btn">Download</a>
+                            <a href="#" class="btn" id="downloadBtn">Download</a>
                             <a href="#" class="btn">Contact</a>
-                        </div>
+                        </div><br>
                         <div class="social">
                             ${github ? `<a href="${github}" target="_blank"><i class="fab fa-github"></i></a>` : ''}
                             ${instagram ? `<a href="${instagram}" target="_blank"><i class="fab fa-instagram"></i></a>` : ''}
@@ -274,21 +346,29 @@ function generatePortfolio(event) {
                         </div>
                     </div>
                 </div>
-                 <!-- Footer Section -->
                 <footer>
-                    <p>&copy; 2024 ${name}. All rights reserved. <br>Thanks for visiting ❤️</p>
+                    <p>&copy;2024 ${name}. All rights reserved. <br>Thanks for visiting ❤️</p>
                 </footer>
                 <script>
-                    const toggle = document.getElementById('toggle-dark-mode');
-                    const sunIcon = document.getElementById('sun-icon');
-                    const moonIcon = document.getElementById('moon-icon');
-                    
-                    toggle.addEventListener('change', () => {
+                    document.getElementById('toggle-dark-mode').addEventListener('change', function () {
                         document.body.classList.toggle('dark-mode');
-                        sunIcon.style.opacity = document.body.classList.contains('dark-mode') ? 0 : 1;
-                        moonIcon.style.opacity = document.body.classList.contains('dark-mode') ? 1 : 0;
+                        document.getElementById('sun-icon').style.opacity = this.checked ? '0' : '1';
+                        document.getElementById('moon-icon').style.opacity = this.checked ? '1' : '0';
+                    });
+
+                    document.getElementById('downloadBtn').addEventListener('click', function () {
+                        const portfolioHTML = document.documentElement.outerHTML;
+                        const zip = new JSZip();
+                        zip.file("index.html", portfolioHTML);
+                        zip.generateAsync({ type: "blob" }).then(function (content) {
+                            const link = document.createElement("a");
+                            link.href = URL.createObjectURL(content);
+                            link.download = "portfolio.zip";
+                            link.click();
+                        });
                     });
                 </script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
             </body>
             </html>
         `);
