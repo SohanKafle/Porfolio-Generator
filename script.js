@@ -51,7 +51,7 @@ function validateForm() {
 function previewImage(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.onload = function (e) {
+    reader.onload = function(e) {
         const preview = document.getElementById('imagePreview');
         preview.src = e.target.result;
         preview.style.display = 'block';
@@ -68,8 +68,8 @@ function generatePortfolio(event) {
     if (!validateForm()) return;
 
     const name = document.getElementById('name').value;
-    const firstName = name.split(' ')[0]; 
-    const role = document.getElementById('role').value;
+    const firstName = name.split(' ')[0];
+    const roleInput = document.getElementById('role').value;
     const description = document.getElementById('description').value;
     const github = document.getElementById('github').value;
     const instagram = document.getElementById('instagram').value;
@@ -77,14 +77,17 @@ function generatePortfolio(event) {
     const twitter = document.getElementById('twitter').value;
     const image = document.getElementById('image').files[0];
 
+    const roles = roleInput.split(',').map(role => role.trim());
+
+
     const reader = new FileReader();
-    reader.onload = function (e) {
-        const imageDataURL = e.target.result;
+    reader.onload = function(e) {
+            const imageDataURL = e.target.result;
 
-        // Open a new tab for the portfolio preview
-        const newTab = window.open("", "_blank");
+            // Open a new tab for the portfolio preview
+            const newTab = window.open("", "_blank");
 
-        newTab.document.write(`
+            newTab.document.write(`
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -111,6 +114,7 @@ function generatePortfolio(event) {
                         font-weight: 900; 
                         letter-spacing: 1px;
                         margin-left: 20px;
+                        margin-top: 10px;
                     }
                     /* Main content styling */
                     .main-content {
@@ -125,7 +129,7 @@ function generatePortfolio(event) {
                         flex-wrap: wrap;
                         justify-content: center;
                         align-items: center;
-                        padding-top: 5rem;
+                        padding-top: 1.5rem;
                         margin-bottom: 10px; 
                     }
 
@@ -156,7 +160,7 @@ function generatePortfolio(event) {
 
                     .profile-text h5 {
                         color: #000000;
-                        font-size: 14px;
+                        font-size: 15px;
                     }
 
                     .profile-text h5 span {
@@ -351,7 +355,7 @@ function generatePortfolio(event) {
                     </div>
                     <div class="profile-text">
                         <h5>Hi I'm <span>${name}.</span></h5>
-                        <h1>${role}</h1>
+                        <h1 id="roleElement"></h1>
                         <p>${description}</p>
                         <div class="btn-group">
                             <a href="#" class="btn" id="downloadBtn">Download</a>
@@ -370,6 +374,59 @@ function generatePortfolio(event) {
                 </footer>
                 
                 <script>
+            // Typing effect function for multiple roles
+            function startTypingEffect(roles, elementId) {
+                const element = document.getElementById(elementId);
+                let roleIndex = 0; // Current role index
+                let charIndex = 0; // Current character index within the role
+                let isDeleting = false; // Track if we are deleting characters
+                let isPaused = false; // Flag to prevent rapid transitions
+
+                function type() {
+                    const currentRole = roles[roleIndex];
+                    let displayedText;
+
+                    // Typing or deleting characters
+                    if (isDeleting) {
+                        displayedText = currentRole.substring(0, charIndex--); // Delete characters
+                    } else {
+                        displayedText = currentRole.substring(0, charIndex++); // Add characters
+                    }
+
+                    element.textContent = displayedText; // Update text content
+
+                    const typingSpeed = isDeleting ? 50 : 100; // Speed when deleting vs typing
+                    const delayAfterFullText = 1000; // Pause after full text
+                    const delayAfterDelete = 500; // Pause after deletion is complete
+
+                    if (!isDeleting && charIndex === currentRole.length) {
+                        
+                        isPaused = true; 
+                        setTimeout(() => {
+                            isDeleting = true;
+                            isPaused = false; // Allow deletion
+                            type(); // Start deleting after pause
+                        }, delayAfterFullText); // Pause before starting deletion
+                    } else if (isDeleting && charIndex === 0) {
+                        // Role fully deleted, move to next role
+                        isPaused = true; 
+                        setTimeout(() => {
+                            isDeleting = false;
+                            roleIndex = (roleIndex + 1) % roles.length; // Loop back to first role
+                            isPaused = false; // Allow typing again
+                            type(); // Start typing next role
+                        }, delayAfterDelete); // Pause before typing next role
+                    } else {
+                        // Continue typing or deleting
+                        setTimeout(type, typingSpeed);
+                    }
+                }
+
+                type(); 
+            }
+                    const roles = ${JSON.stringify(roles)};
+                    startTypingEffect(roles, 'roleElement');
+    
                     document.getElementById('toggle-dark-mode').addEventListener('change', function () {
                         document.body.classList.toggle('dark-mode');
                         document.getElementById('sun-icon').style.opacity = this.checked ? '0' : '1';
@@ -411,4 +468,3 @@ document.getElementById('portfolioForm').addEventListener('submit', generatePort
 
 // Event listener for the image preview
 document.getElementById('image').addEventListener('change', previewImage);
-
