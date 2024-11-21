@@ -10,7 +10,7 @@ A dynamic web application that empowers users to create, preview, and download p
 
 ## 🌐 Live Demo
 Check out the live demo of the Portfolio Generator Web App:  
-[Live Demo](https://your-demo-link.com)
+[Live Demo](https://sohankafle.github.io/Porfolio-Generator/)
 
 ## 🛠️ Technologies Used
 - **Frontend**: HTML, CSS, JavaScript
