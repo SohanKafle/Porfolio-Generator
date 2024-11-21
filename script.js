@@ -51,7 +51,7 @@ function validateForm() {
 function previewImage(event) {
     const file = event.target.files[0];
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
         const preview = document.getElementById('imagePreview');
         preview.src = e.target.result;
         preview.style.display = 'block';
@@ -69,7 +69,7 @@ function generatePortfolio(event) {
 
     const name = document.getElementById('name').value;
     const firstName = name.split(' ')[0];
-    const roleInput = document.getElementById('role').value;
+    const roles = document.getElementById('role').value.trim().split(',').map(role => role.trim());
     const description = document.getElementById('description').value;
     const github = document.getElementById('github').value;
     const instagram = document.getElementById('instagram').value;
@@ -77,17 +77,15 @@ function generatePortfolio(event) {
     const twitter = document.getElementById('twitter').value;
     const image = document.getElementById('image').files[0];
 
-    const roles = roleInput.split(',').map(role => role.trim());
-
 
     const reader = new FileReader();
-    reader.onload = function(e) {
-            const imageDataURL = e.target.result;
+    reader.onload = function (e) {
+        const imageDataURL = e.target.result;
 
-            // Open a new tab for the portfolio preview
-            const newTab = window.open("", "_blank");
+        // Open a new tab for the portfolio preview
+        const newTab = window.open("", "_blank");
 
-            newTab.document.write(`
+        newTab.document.write(`
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
@@ -97,16 +95,17 @@ function generatePortfolio(event) {
                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
                 <style>
-                    body {
-                        margin: 0;
-                        font-family: 'Poppins', sans-serif;
-                        background-color: #f9f9f9;
-                        transition: background-color 0.3s, color 0.3s;
-                        padding: 0;
-                        display: flex;
-                        flex-direction: column;
-                        min-height: 100vh; 
-                    }
+                   body {
+                    margin: 0;
+                    font-family: 'Poppins', sans-serif;
+                    background-color: #f9f9f9;
+                    transition: background-color 0.3s, color 0.3s;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 100vh;
+                    overflow-x: hidden; 
+                }
                    .logo {
                         font-family: 'Dancing Script', cursive; 
                         font-size: 2.5rem; 
@@ -173,20 +172,30 @@ function generatePortfolio(event) {
                         font-size: 2rem;
                     }
 
+                    #portfolio-content {
+                        width: 100%; 
+                        box-sizing: border-box; 
+                    }
+
                     .profile-text p {
                         color: #000000;
                         text-align: justify;
+                        word-wrap: break-word; 
+                        white-space: pre-wrap; 
+                        overflow-wrap: break-word; 
+                        max-width: 100%; 
                     }
+
                 /* Social section styling */
                     .social {
                         margin-top: 20px;
-                        text-align: center; /* Center the icons */
+                        text-align: center;
                     }
 
                     .social a {
                         color: #000000;
                         font-size: 18px;
-                        margin: 0 15px; /* Adjust spacing between icons */
+                        margin: 0 15px; 
                         transition: 0.5s;
                     }
 
@@ -199,7 +208,7 @@ function generatePortfolio(event) {
                         margin-top: 30px;
                         display: flex;
                         justify-content: center;
-                        gap: 20px; /* Add spacing between buttons */
+                        gap: 20px; 
                     }
 
                     .btn-group a {
@@ -230,7 +239,7 @@ function generatePortfolio(event) {
                         color: black;
                         text-align: center;
                         padding: 20px;
-                        margin-top: 50px; /* Space above footer */
+                        margin-top: 50px; 
                     }
 
                     /* Dark Mode Styles */
@@ -310,34 +319,43 @@ function generatePortfolio(event) {
                     }
 
                     /* Responsive styles for mobile */
-                    @media (max-width: 768px) {
-                    body {
-                        padding: 0 15px;
-                    }
+                        @media (max-width: 768px) {
+                            body {
+                                padding-left: 15px; 
+                                padding-right: 15px;
+                            }
 
-                    .FirstElement {
-                        flex-direction: column;
-                        text-align: center;
-                        margin-bottom: 0;
-                    }
+                            .FirstElement {
+                                flex-direction: column;
+                                text-align: center;
+                                margin-bottom: 0;
+                            }
 
-                    .profile-photo {
-                        width: 200px;
-                        height: 200px;
-                        margin: 0 auto;
-                    }
+                            .profile-photo {
+                                width: 200px;
+                                height: 200px;
+                                margin: 0 auto;
+                            }
 
-                    .profile-text {
-                        max-width: 100%;
-                        padding: 0 10px; 
-                    }
+                            .profile-text {
+                                max-width: 100%;
+                                padding: 0 20px 0 15px; 
+                                box-sizing: border-box; 
+                            }
 
-                    footer {
-                        margin-top: 50px;
-                        padding: 0 15px; 
-                    }
-                }
-                </style>
+                            footer {
+                                margin-top: 50px;
+                                padding: 0 15px; 
+                            }
+
+                            .profile-text p {
+                                word-wrap: break-word; 
+                                white-space: pre-wrap; 
+                                overflow-wrap: break-word;
+                                max-width: 100%;
+                            }
+                        }
+            </style>
             </head>
             <body>
                 <div class="logo">${firstName}.</div>
@@ -355,7 +373,7 @@ function generatePortfolio(event) {
                     </div>
                     <div class="profile-text">
                         <h5>Hi I'm <span>${name}.</span></h5>
-                        <h1 id="roleElement"></h1>
+                        <h1> a <span id="roleText"></span></h1>
                         <p>${description}</p>
                         <div class="btn-group">
                             <a href="#" class="btn" id="downloadBtn">Download</a>
@@ -369,79 +387,46 @@ function generatePortfolio(event) {
                         </div>
                     </div>
                 </div>
+
                 <footer>
                     <p>&copy;2024 ${name}. All rights reserved. <br>Thanks for visiting ❤️</p>
                 </footer>
                 
                 <script>
-            // Typing effect function for multiple roles
-            function startTypingEffect(roles, elementId) {
-                const element = document.getElementById(elementId);
-                let roleIndex = 0; // Current role index
-                let charIndex = 0; // Current character index within the role
-                let isDeleting = false; // Track if we are deleting characters
-                let isPaused = false; // Flag to prevent rapid transitions
+                const roles = ${JSON.stringify(roles)};
+                let roleIndex = 0, charIndex = 0;
+                const roleElement = document.getElementById('roleText');
 
-                function type() {
-                    const currentRole = roles[roleIndex];
-                    let displayedText;
-
-                    // Typing or deleting characters
-                    if (isDeleting) {
-                        displayedText = currentRole.substring(0, charIndex--); // Delete characters
+                function typeEffect() {
+                    if (charIndex < roles[roleIndex].length) {
+                        roleElement.textContent += roles[roleIndex].charAt(charIndex++);
+                        setTimeout(typeEffect, 100);
                     } else {
-                        displayedText = currentRole.substring(0, charIndex++); // Add characters
-                    }
-
-                    element.textContent = displayedText; // Update text content
-
-                    const typingSpeed = isDeleting ? 50 : 100; // Speed when deleting vs typing
-                    const delayAfterFullText = 1000; // Pause after full text
-                    const delayAfterDelete = 500; // Pause after deletion is complete
-
-                    if (!isDeleting && charIndex === currentRole.length) {
-                        
-                        isPaused = true; 
                         setTimeout(() => {
-                            isDeleting = true;
-                            isPaused = false; // Allow deletion
-                            type(); // Start deleting after pause
-                        }, delayAfterFullText); // Pause before starting deletion
-                    } else if (isDeleting && charIndex === 0) {
-                        // Role fully deleted, move to next role
-                        isPaused = true; 
-                        setTimeout(() => {
-                            isDeleting = false;
-                            roleIndex = (roleIndex + 1) % roles.length; // Loop back to first role
-                            isPaused = false; // Allow typing again
-                            type(); // Start typing next role
-                        }, delayAfterDelete); // Pause before typing next role
-                    } else {
-                        // Continue typing or deleting
-                        setTimeout(type, typingSpeed);
+                            charIndex = 0;
+                            roleElement.textContent = '';
+                            roleIndex = (roleIndex + 1) % roles.length;
+                            typeEffect();
+                        }, 1000);
                     }
                 }
+                typeEffect();
+                
+                document.getElementById('toggle-dark-mode').addEventListener('change', function () {
+                    document.body.classList.toggle('dark-mode');
+                    document.getElementById('sun-icon').style.opacity = this.checked ? '0' : '1';
+                    document.getElementById('moon-icon').style.opacity = this.checked ? '1' : '0';
+                });
 
-                type(); 
-            }
-                    const roles = ${JSON.stringify(roles)};
-                    startTypingEffect(roles, 'roleElement');
-    
-                    document.getElementById('toggle-dark-mode').addEventListener('change', function () {
-                        document.body.classList.toggle('dark-mode');
-                        document.getElementById('sun-icon').style.opacity = this.checked ? '0' : '1';
-                        document.getElementById('moon-icon').style.opacity = this.checked ? '1' : '0';
-                    });
-
-                    document.getElementById('downloadBtn').addEventListener('click', function () {
-                        const portfolioHTML = document.documentElement.outerHTML;
-                        const zip = new JSZip();
-                        zip.file("index.html", portfolioHTML);
-                        zip.generateAsync({ type: "blob" }).then(function (content) {
-                            const link = document.createElement("a");
-                            link.href = URL.createObjectURL(content);
-                            link.download = "portfolio.zip";
-                            link.click();
+                document.getElementById('downloadBtn').addEventListener('click', function () {
+                    const portfolioHTML = document.documentElement.outerHTML;
+                    const zip = new JSZip();
+                    zip.file("index.html", portfolioHTML);
+                    zip.generateAsync({ type: "blob" }).then(function (content) {
+                        const link = document.createElement("a");
+                        link.href = URL.createObjectURL(content);
+                        link.download = "portfolio.zip";
+                        link.click();
                         });
                     });
                 </script>
