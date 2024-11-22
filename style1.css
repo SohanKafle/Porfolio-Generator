@@ -160,7 +160,11 @@ body {
         font-size: 0.9rem; /* Smaller font size */
     }
 
+    body {
+        padding-top: 150px; /* Adjust top spacing for smaller screens */
+    }
+
     .container {
-        padding: 15px; /* Further reduce padding for ultra-small screens */
+        padding: 20px; /* Adjust inner padding for smaller screens */
     }
 }
