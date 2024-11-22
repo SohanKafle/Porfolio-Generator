@@ -11,9 +11,11 @@ body {
     color: #333;
     line-height: 1.8;
     display: flex;
-    flex-direction: column; /* Ensure elements stack vertically */
-    justify-content: space-between; /* Push header and footer apart */
-    min-height: 100vh; /* Ensure the page is at least the height of the screen */
+    justify-content: center; /* Horizontally center content */
+    align-items: center;    /* Vertically center content */
+    flex-direction: column; /* Stack elements vertically */
+    margin: 0;
+    min-height: 100vh; /* Ensure full screen height on all devices */
     padding: 0 20px;
 }
 
@@ -35,11 +37,13 @@ body {
     color: #ffffff;
     padding: 30px 20px;
     border-radius: 20px;
-    margin-left: 25%;
-    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
     background: linear-gradient(135deg, #6D73FF, #98A4FF); /* Soft gradient background */
     margin-bottom: 30px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
+    text-align: center;
 }
 
 .header h1 {
@@ -56,7 +60,6 @@ body {
     color: #333;
     font-size: 1.2rem;
     font-weight: 300;
-    text-align: center;
 }
 
 /* Button Styles */
@@ -93,7 +96,6 @@ body {
 .footer {
     color: #333;
     text-align: center;
-
     width: 100%;
     margin-top: auto; /* Push footer to the bottom */
     background: none; /* No background */
@@ -115,16 +117,50 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        display: flex;
+        justify-content: center; /* Horizontally center content */
+        align-items: center; /* Vertically center content */
+        flex-direction: column;
+    }
+
     .header h1 {
-        font-size: 2.5rem;
+        font-size: 2rem; /* Reduce font size for better readability */
     }
 
     .header p {
-        font-size: 1rem;
+        font-size: 1rem; /* Adjust paragraph text size */
     }
 
     .start-btn {
-        padding: 12px 24px;
-        font-size: 1.1rem;
+        padding: 10px 20px; /* Reduce button padding */
+        font-size: 1rem; /* Adjust font size for smaller buttons */
+    }
+
+    .container {
+        padding: 20px; /* Reduce padding for smaller screens */
+    }
+
+    .footer p {
+        font-size: 12px; /* Smaller font size for compact display */
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.8rem; /* Further reduce font size for very small screens */
+    }
+
+    .header p {
+        font-size: 0.9rem; /* Adjust text for ultra-small screens */
+    }
+
+    .start-btn {
+        padding: 8px 16px; /* Adjust padding for compact buttons */
+        font-size: 0.9rem; /* Smaller font size */
+    }
+
+    .container {
+        padding: 15px; /* Further reduce padding for ultra-small screens */
     }
 }
