@@ -6,16 +6,16 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif; /* Modern sans-serif font */
-    background: #E5F3FF; /* Soft light blue background */
+    font-family: 'Montserrat', sans-serif;
+    background: #E5F3FF; 
     color: #333;
     line-height: 1.8;
     display: flex;
-    justify-content: center; /* Horizontally center content */
-    align-items: center;    /* Vertically center content */
-    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; 
+    align-items: center;   
+    flex-direction: column; 
     margin: 0;
-    min-height: 100vh; /* Ensure full screen height on all devices */
+    min-height: 100vh; 
     padding: 0 20px;
 }
 
@@ -26,8 +26,8 @@ body {
     width: 100%;
     padding: 40px;
     background-color: #ffffff;
-    border-radius: 20px; /* Rounded corners */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
 
@@ -40,20 +40,20 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
-    background: linear-gradient(135deg, #6D73FF, #98A4FF); /* Soft gradient background */
+    background: linear-gradient(135deg, #6D73FF, #98A4FF);
     margin-bottom: 30px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for header */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); 
     text-align: center;
 }
 
 .header h1 {
-    color: #000000; /* Black header text */
+    color: #000000; 
     font-size: 3rem;
     font-weight: 600;
     margin-bottom: 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-family: 'Lora', sans-serif; /* Modern sans-serif font */
+    font-family: 'Lora', sans-serif; 
 }
 
 .header p {
@@ -64,7 +64,7 @@ body {
 
 /* Button Styles */
 .start-btn {
-    background-color: #f063b8; /* Soft pink button */
+    background-color: #f063b8; 
     color: white;
     padding: 16px 32px;
     font-size: 1.2rem;
@@ -77,19 +77,19 @@ body {
 }
 
 .start-btn:hover {
-    background-color: #f61489; /* Slightly darker pink */
-    transform: translateY(-4px); /* Hover elevation effect */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow on hover */
+    background-color: #f61489; 
+    transform: translateY(-4px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
 }
 
 .start-btn:active {
-    background-color: #FF5499; /* Darker pink for active state */
-    transform: translateY(1px); /* Active effect */
+    background-color: #FF5499; 
+    transform: translateY(1px);
 }
 
 /* Hover Effect for Container */
 .container:hover {
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); /* Slight hover effect */
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15); 
 }
 
 /* Footer Styling */
@@ -97,8 +97,8 @@ body {
     color: #333;
     text-align: center;
     width: 100%;
-    margin-top: auto; /* Push footer to the bottom */
-    background: none; /* No background */
+    margin-top: auto; 
+    background: none; 
 }
 
 .footer p {
@@ -119,52 +119,52 @@ body {
 @media (max-width: 768px) {
     body {
         display: flex;
-        justify-content: center; /* Horizontally center content */
-        align-items: center; /* Vertically center content */
+        justify-content: center; 
+        align-items: center; 
         flex-direction: column;
     }
 
     .header h1 {
-        font-size: 2rem; /* Reduce font size for better readability */
+        font-size: 2rem; 
     }
 
     .header p {
-        font-size: 1rem; /* Adjust paragraph text size */
+        font-size: 1rem; 
     }
 
     .start-btn {
-        padding: 10px 20px; /* Reduce button padding */
-        font-size: 1rem; /* Adjust font size for smaller buttons */
+        padding: 10px 20px; 
+        font-size: 1rem; 
     }
 
     .container {
-        padding: 20px; /* Reduce padding for smaller screens */
+        padding: 20px; 
     }
 
     .footer p {
-        font-size: 12px; /* Smaller font size for compact display */
+        font-size: 12px;
     }
 }
 
 @media (max-width: 480px) {
     .header h1 {
-        font-size: 1.8rem; /* Further reduce font size for very small screens */
+        font-size: 1.8rem; 
     }
 
     .header p {
-        font-size: 0.9rem; /* Adjust text for ultra-small screens */
+        font-size: 0.9rem; 
     }
 
     .start-btn {
-        padding: 8px 16px; /* Adjust padding for compact buttons */
-        font-size: 0.9rem; /* Smaller font size */
+        padding: 8px 16px;
+        font-size: 0.9rem; 
     }
 
     body {
-        padding-top: 150px; /* Adjust top spacing for smaller screens */
+        padding-top: 150px; 
     }
 
     .container {
-        padding: 20px; /* Adjust inner padding for smaller screens */
+        padding: 20px; 
     }
 }
